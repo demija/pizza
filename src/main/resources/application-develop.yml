@@ -1,0 +1,15 @@
+jwt:
+  secret: ReferrizerSecretKeyToGenJWTs
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/pizzastore
+    username: postgres
+    password: test
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: create-drop
+  application:
+    name: auth-service

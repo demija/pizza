@@ -1,0 +1,343 @@
+swagger: "2.0"
+info:
+  description: "Pizza store demo application."
+  title: "Pizza store"
+  version: "0.0.1"
+host: "pizza"
+basePath: "/api/v1"
+schemes:
+  - "https"
+  - "http"
+
+paths:
+  /login:
+    post:
+      tags:
+        - "authentication"
+      summary: "Basic access authentication"
+      description: "User authentication with username and password."
+      operationId: "login"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: '#/definitions/AuthResponse'
+        "400":
+          $ref: '#/responses/400BadRequest'
+        '401':
+          $ref: '#/responses/401Unauthorized'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+  /register:
+    post:
+      tags:
+        - "authentication"
+      summary: "User registration"
+      description: "User registration with user data."
+      operationId: "register"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User registration"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "409":
+          $ref: "#/responses/409Conflict"
+        "500":
+          $ref: '#/responses/500ServerError'
+  /menu:
+    post:
+      tags:
+        - "menu"
+      summary: "Create menu"
+      description: "Create pizza menu."
+      operationId: "createMenu"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          name: "Authorization"
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Menu"
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Item"
+      responses:
+        "201":
+          description: "Created"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "401":
+          $ref: '#/responses/401Unauthorized'
+        "409":
+          $ref: "#/responses/409Conflict"
+        "500":
+          $ref: '#/responses/500ServerError'
+    get:
+      tags:
+        - "menu"
+      summary: "Get menu"
+      description: "Get pizza menu."
+      operationId: "getMenu"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Item"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+    put:
+      tags:
+        - "menu"
+      summary: "Update menu"
+      description: "Update pizza menu."
+      operationId: "updateMenu"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          name: "Authorization"
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Menu"
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Item"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "401":
+          $ref: '#/responses/401Unauthorized'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+  /menu/items/{slug}:
+    delete:
+      tags:
+        - "menu"
+      summary: "Delete menu item"
+      description: "Delete item from menu by slug."
+      operationId: "deleteItem"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          name: "Authorization"
+          type: string
+          required: true
+        - in: "path"
+          name: "slug"
+          required: true
+          type: string
+          description: "Item slug"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "401":
+          $ref: '#/responses/401Unauthorized'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+  /items/{name}:
+    get:
+      tags:
+        - "item"
+      summary: "Search item"
+      description: "Search menu item by name."
+      operationId: "searchItem"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "name"
+          required: true
+          type: string
+          description: "Item name"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Item"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "401":
+          $ref: '#/responses/401Unauthorized'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+  /items:
+    patch:
+      tags:
+        - "item"
+      summary: "Update item"
+      description: "Update menu item."
+      operationId: "updateItem"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "header"
+          name: "Authorization"
+          type: string
+          required: true
+        - in: "body"
+          name: "body"
+          description: "Menu"
+          required: true
+          schema:
+            $ref: "#/definitions/PatchItem"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          $ref: '#/responses/400BadRequest'
+        "401":
+          $ref: '#/responses/401Unauthorized'
+        "404":
+          $ref: '#/responses/404NotFound'
+        "500":
+          $ref: '#/responses/500ServerError'
+definitions:
+  AuthResponse:
+    type: object
+    description: >-
+      JWT
+    properties:
+      access_token:
+        type: string
+        example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGVtZ0ByZWZlcnJpemVyLmNvbSIsImV4cCI6MTYyNjU3OTkxOH0.UGty4_A8DDRvMxjg2k5vGC7zn9cwHFvH0tRYDi-l1cm3e0h2m0GF6jfrlwOOWFbokW1oueWsNuLjfXG8851GLw"
+      type:
+        type: string
+        example: "Bearer"
+      expires_in:
+        type: integer
+        example: 3_600_000
+  User:
+    type: object
+    description: "User registration request"
+    properties:
+      username:
+        type: string
+        example: "username"
+        minLength: 5
+      password:
+        type: string
+        example: "password"
+        minLength: 5
+    required: [username, password]
+  Item:
+    type: object
+    description: "Menu item"
+    properties:
+      name:
+        type: string
+        example: "Capricciosa"
+      slug:
+        type: string
+        example: "capricciosa"
+      size:
+        type: integer
+        example: 23
+      price:
+        type: integer
+        minimum: 0.01
+        example: 240
+      date:
+        type: string
+        format: date-time
+        example: "2021-02-02T09:02:01Z"
+    required: [name, slug, size, price]
+  PatchItem:
+    type: object
+    description: "Patch menu item"
+    properties:
+      name:
+        type: string
+        example: "Capricciosa"
+      slug:
+        type: string
+        example: "capricciosa"
+      size:
+        type: integer
+        example: 23
+      price:
+        type: integer
+        minimum: 0.01
+        example: 240
+      date:
+        type: string
+        format: date-time
+        example: "2021-02-02T09:02:01Z"
+    required: [slug]
+responses:
+  "400BadRequest":
+    description: |
+      Bad Request / Invalid input
+      Server was unable to process the request (most likely malformed request body).
+  "401Unauthorized":
+    description: "Authentication information is missing or invalid"
+    headers:
+      Authorization:
+        type: string
+        description: "base64-encoded username:password"
+  "404NotFound":
+    description: |
+      Not found
+      The server can not find the requested resource.
+  "422UnprocessableEntity":
+    description: |
+      Unprocessable Entity
+      The request body has correct syntax, but data validation failed.
+  "409Conflict":
+    description: |
+      Conflict
+      This response is sent when a request conflicts with the current state of the server.
+  "500ServerError":
+    description: "Internal Server Error"
