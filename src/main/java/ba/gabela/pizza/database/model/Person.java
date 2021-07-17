@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,8 +18,11 @@ public final class Person {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
+    @Column(unique = true)
+    @NotBlank(message = "This field is required")
     private String username;
 
+    @NotBlank(message = "This field is required")
     private String password;
 
     @Column(insertable = true, updatable = false)
