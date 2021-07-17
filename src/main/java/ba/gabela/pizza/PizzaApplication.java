@@ -3,6 +3,7 @@ package ba.gabela.pizza;
 import ba.gabela.pizza.util.MyModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import springfox.documentation.builders.PathSelectors;
@@ -13,7 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@SuppressWarnings({"squid:S4823", "checkstyle:hideutilityclassconstructor"})
+@EnableCaching
+@SuppressWarnings({"squid:S4823", "hideutilityclassconstructor"})
 public class PizzaApplication {
 
 	@Bean

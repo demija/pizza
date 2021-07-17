@@ -17,6 +17,7 @@ import static ba.gabela.pizza.config.security.SecurityConstants.MENU_URL;
 import static ba.gabela.pizza.config.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
+@SuppressWarnings({"AnnotationUseStyle", "DesignForExtension"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PersonRepository personRepository;

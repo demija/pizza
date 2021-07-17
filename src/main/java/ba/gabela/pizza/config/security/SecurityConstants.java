@@ -1,6 +1,6 @@
 package ba.gabela.pizza.config.security;
 
-@SuppressWarnings({"squid:S4823", "checkstyle:hideutilityclassconstructor"})
+@SuppressWarnings({"squid:S4823", "hideutilityclassconstructor"})
 public class SecurityConstants {
     public static final String ISSUER = "Referrizer";
     public static final long EXPIRATION_TIME = 3_600_000;

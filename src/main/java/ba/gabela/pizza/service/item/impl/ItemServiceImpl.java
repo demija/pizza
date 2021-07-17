@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.beans.FeatureDescriptor;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,6 +31,7 @@ public final class ItemServiceImpl implements ItemService {
     public List<ItemResponse> searchByName(String name) {
         return pizzaItemRepository.findByNameContainingIgnoreCase(name).stream()
                 .map(pizzaItem -> modelMapper.map(pizzaItem, ItemResponse.class))
+                .sorted(Comparator.comparing(ItemResponse::getDate).reversed())
                 .collect(Collectors.toList());
     }
 
