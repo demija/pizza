@@ -2,6 +2,7 @@ package ba.gabela.pizza.service.item.impl;
 
 import ba.gabela.pizza.database.model.PizzaItem;
 import ba.gabela.pizza.database.repository.PizzaItemRepository;
+import ba.gabela.pizza.exception.CustomException;
 import ba.gabela.pizza.generated.model.ItemResponse;
 import ba.gabela.pizza.generated.model.PatchItem;
 import ba.gabela.pizza.service.item.ItemService;
@@ -12,7 +13,6 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.beans.FeatureDescriptor;
 import java.util.Comparator;
 import java.util.List;
@@ -40,7 +40,7 @@ public final class ItemServiceImpl implements ItemService {
         PizzaItem pizzaItem = pizzaItemRepository.findById(body.getSlug()).orElse(null);
 
         if (pizzaItem == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Menu item not found");
+            throw new CustomException(HttpStatus.NOT_FOUND, "Not found", "Menu item not found");
         }
 
         PizzaItem map = modelMapper.map(body, PizzaItem.class);

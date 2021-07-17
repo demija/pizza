@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "dedde23c-89d2-40b7-af80-68e936c29996",
+		"name": "Pizza store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": null,\n    \"password\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Menu",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGVtZyIsImlzcyI6IlJlZmVycml6ZXIiLCJleHAiOjE2MjY1NTg5MzgsImlhdCI6MTYyNjU1NTMzOH0.mECKEUFizvf8C-pVchJZbU3iUaaw0u4VU23cnyohOLPJaHf2e1sDrtgCaQWJnpe_d1wkk2l4mw-PxhYEFfj1IA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"Capricciosa\",\n        \"slug\": \"capricciosa\",\n        \"size\": 23,\n        \"price\": 240\n    },\n    {\n        \"name\": \"Calzone\",\n        \"slug\": \"calzone\",\n        \"size\": 23,\n        \"price\": 280\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGVtZyIsImlzcyI6IlJlZmVycml6ZXIiLCJleHAiOjE2MjY1NTkyNzgsImlhdCI6MTYyNjU1NTY3OH0.222iJOjx4Odx08Gaq8QySQoC-a2uPAyxDsM_l0dusnHxbO5HSsJfSDH__uKJ8JPUmAvhfj_F8MycwM3ZGLnb0w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"Calzone\",\n        \"slug\": \"calzone\",\n        \"size\": 23,\n        \"price\": 280\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu item",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGVtIiwiaXNzIjoiUmVmZXJyaXplciIsImV4cCI6MTYyNjUzNzM4MiwiaWF0IjoxNjI2NTMzNzgyfQ.JRhwKEqLLBA3YkeLVuT2uaXr0cRiNHIDpIWzvLPXrryEifrXaebqzqHfAWLjwxZ_jembsoQ2swDAffKvtK89cw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/menu/items/SLUG",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"menu",
+								"items",
+								"SLUG"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "Search by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/items/NAME",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"items",
+								"NAME"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGVtZyIsImlzcyI6IlJlZmVycml6ZXIiLCJleHAiOjE2MjY1NjIzNTEsImlhdCI6MTYyNjU1ODc1MX0.TBTYoiDvH84I8ojsVAG1Lf7OMzrnqc4_vbLcUQg3wMSnB_as-LEDz0tSGLJb3aP1hH_hgK1UOJX5Ic5BwoyAJA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slug\": \"capricciosa\",\n    \"price\": 230.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
