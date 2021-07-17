@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RegisterController implements RegisterApi {
     @Autowired
-    RegistrationService registrationService;
+    private RegistrationService registrationService;
 
     @Override
     public ResponseEntity<Void> register(User body) {

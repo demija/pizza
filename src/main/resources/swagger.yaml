@@ -83,9 +83,10 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Item"
+            uniqueItems: true
       responses:
-        "201":
-          description: "Created"
+        "200":
+          description: "Ok"
         "400":
           $ref: '#/responses/400BadRequest'
         "401":
@@ -108,11 +109,9 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Item"
+              $ref: "#/definitions/ItemResponse"
         "400":
           $ref: '#/responses/400BadRequest'
-        "404":
-          $ref: '#/responses/404NotFound'
         "500":
           $ref: '#/responses/500ServerError'
     put:
@@ -145,8 +144,6 @@ paths:
           $ref: '#/responses/400BadRequest'
         "401":
           $ref: '#/responses/401Unauthorized'
-        "404":
-          $ref: '#/responses/404NotFound'
         "500":
           $ref: '#/responses/500ServerError'
   /menu/items/{slug}:
@@ -186,8 +183,6 @@ paths:
       summary: "Search item"
       description: "Search menu item by name."
       operationId: "searchItem"
-      consumes:
-        - "application/json"
       produces:
         - "application/json"
       parameters:
@@ -202,13 +197,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Item"
+              $ref: "#/definitions/ItemResponse"
         "400":
           $ref: '#/responses/400BadRequest'
         "401":
           $ref: '#/responses/401Unauthorized'
-        "404":
-          $ref: '#/responses/404NotFound'
         "500":
           $ref: '#/responses/500ServerError'
   /items:
@@ -286,13 +279,9 @@ definitions:
         type: integer
         example: 23
       price:
-        type: integer
+        type: number
         minimum: 0.01
         example: 240
-      date:
-        type: string
-        format: date-time
-        example: "2021-02-02T09:02:01Z"
     required: [name, slug, size, price]
   PatchItem:
     type: object
@@ -308,14 +297,30 @@ definitions:
         type: integer
         example: 23
       price:
+        type: number
+        minimum: 0.01
+        example: 240
+    required: [slug]
+  ItemResponse:
+    type: object
+    description: "Patch menu item"
+    properties:
+      name:
+        type: string
+        example: "Capricciosa"
+      slug:
+        type: string
+        example: "capricciosa"
+      size:
         type: integer
+        example: 23
+      price:
+        type: number
         minimum: 0.01
         example: 240
       date:
         type: string
-        format: date-time
         example: "2021-02-02T09:02:01Z"
-    required: [slug]
 responses:
   "400BadRequest":
     description: |

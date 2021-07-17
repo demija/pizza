@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import static ba.gabela.pizza.config.security.SecurityConstants.ITEM_URL;
+import static ba.gabela.pizza.config.security.SecurityConstants.MENU_URL;
 import static ba.gabela.pizza.config.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -39,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.GET, MENU_URL).permitAll()
+                .antMatchers(HttpMethod.GET, ITEM_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtTokenUtil, personRepository))
