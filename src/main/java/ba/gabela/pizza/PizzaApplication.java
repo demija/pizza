@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+@SuppressWarnings({"squid:S4823", "checkstyle:hideutilityclassconstructor"})
 public class PizzaApplication {
 
 	@Bean

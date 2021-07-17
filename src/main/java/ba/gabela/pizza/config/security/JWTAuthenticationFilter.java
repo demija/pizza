@@ -18,12 +18,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import static ba.gabela.pizza.config.security.SecurityConstants.EXPIRATION_TIME;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final PersonRepository personRepository;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, PersonRepository personRepository) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager,
+                                   JwtTokenUtil jwtTokenUtil,
+                                   PersonRepository personRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.personRepository = personRepository;

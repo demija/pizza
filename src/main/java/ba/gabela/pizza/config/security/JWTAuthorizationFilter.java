@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import static ba.gabela.pizza.config.security.SecurityConstants.HEADER_STRING;
 import static ba.gabela.pizza.config.security.SecurityConstants.TOKEN_PREFIX;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public final class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private final String secret;
 
     public JWTAuthorizationFilter(AuthenticationManager authManager, String secret) {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api(tags = {"register"})
-public class RegisterController implements RegisterApi {
+public final class RegisterController implements RegisterApi {
     @Autowired
     private RegistrationService registrationService;
 

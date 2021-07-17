@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
-public class PizzaItem {
+public final class PizzaItem {
     @Id
     private String slug;
 

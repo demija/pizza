@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = {"menu"})
-public class MenuController implements MenuApi {
+public final class MenuController implements MenuApi {
     @Autowired
     private MenuService menuService;
 

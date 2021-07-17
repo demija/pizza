@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class RegistrationServiceImpl implements RegistrationService {
+public final class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     private PersonRepository personRepository;
 

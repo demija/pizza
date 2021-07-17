@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = {"item"})
-public class ItemController implements ItemsApi {
+public final class ItemController implements ItemsApi {
     @Autowired
     private ItemService itemService;
 

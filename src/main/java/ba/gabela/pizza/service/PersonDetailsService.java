@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import static java.util.Collections.emptyList;
 
 @Service
-public class PersonDetailsService implements UserDetailsService {
+public final class PersonDetailsService implements UserDetailsService {
     @Autowired
     private PersonRepository personRepository;
 

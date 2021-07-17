@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class ItemServiceImpl implements ItemService {
+public final class ItemServiceImpl implements ItemService {
     @Autowired
     private PizzaItemRepository pizzaItemRepository;
 
